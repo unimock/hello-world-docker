@@ -1,3 +1,18 @@
+ 2007  cd hello-world-docker/
+ 2008  docker buildx build --push --platform linux/amd64,linux/arm64  --tag unimock/hello-world-docker:latest
+ 2009  docker buildx build --push --platform linux/amd64,linux/arm64  --tag unimock/hello-world-docker:latest .
+ 2010  docker login
+ 2011  docker buildx build --push --platform linux/amd64,linux/arm64  --tag unimock/hello-world-docker:latest .
+ 2012  docker images ls
+ 2013  docker images ls -a
+ 2014  docker image ls
+ 2015  docker image ls -a
+ 2016  docker buildx build --push --platform linux/amd64,linux/arm64  --tag unimock/hello-world-docker:latest .
+ 2017  history 
+
+
+
+
 # Hello World
 
 This is a simple Docker image that just gives http responses on port 8000. It's
@@ -48,4 +63,13 @@ $ curl -X POST localhost/super/secret
 ```
 $ curl --write-out %{http_code} --silent --output /dev/null localhost
 200
+```
+
+## arm64 and amd64 image creation and deployment
+
+```
+docker buildx create --name mybuilder --use --bootstrap
+docker login
+docker buildx build --push --platform linux/amd64,linux/arm64  --tag unimock/hello-world-docker:latest
+
 ```
